@@ -1,0 +1,918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BIITSOCIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Allocation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_no" Type="varchar" MaxLength="100" />
+          <Property Name="course_no" Type="varchar" MaxLength="50" />
+          <Property Name="semester_no" Type="varchar" MaxLength="100" />
+          <Property Name="section" Type="varchar" MaxLength="50" />
+          <Property Name="Discipline" Type="varchar" MaxLength="50" />
+          <Property Name="semC" Type="int" />
+          <Property Name="SOS" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="chats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userid" Type="varchar" MaxLength="20" />
+          <Property Name="chat_id" Type="varchar" MaxLength="20" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateTime" Type="varchar" MaxLength="20" />
+          <Property Name="text" Type="varchar(max)" />
+          <Property Name="type" Type="varchar" MaxLength="20" />
+          <Property Name="chatTo" Type="int" />
+          <Property Name="Date" Type="varchar" MaxLength="50" />
+          <Property Name="url" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="commentsOn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="varchar" MaxLength="20" />
+          <Property Name="postId" Type="int" />
+          <Property Name="dateTime" Type="varchar" MaxLength="200" />
+          <Property Name="text" Type="varchar(max)" />
+          <Property Name="type" Type="varchar" MaxLength="20" />
+          <Property Name="repliedOn" Type="int" />
+          <Property Name="likeCount" Type="int" />
+        </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="course_no" Type="varchar" MaxLength="80" />
+          <Property Name="course_desc" Type="varchar" MaxLength="80" />
+          <Property Name="title" Type="varchar" MaxLength="300" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="crsEnrp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REG_NO" Type="varchar" MaxLength="100" />
+          <Property Name="DISCIPLINE" Type="varchar" MaxLength="50" />
+          <Property Name="course_no" Type="varchar" MaxLength="80" />
+          <Property Name="emp_no" Type="varchar" MaxLength="50" />
+          <Property Name="semester_no" Type="varchar" MaxLength="50" />
+          <Property Name="Attempt_no" Type="int" />
+          <Property Name="grade" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DateeSheet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="varchar(max)" />
+          <Property Name="examType" Type="varchar(max)" />
+          <Property Name="venue" Type="varchar" MaxLength="500" />
+          <Property Name="section" Type="varchar" MaxLength="500" />
+          <Property Name="paper" Type="varchar" MaxLength="500" />
+          <Property Name="day" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Diary">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="varchar" MaxLength="100" />
+          <Property Name="post_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="startDate" Type="datetime" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="colorId" Type="int" />
+        </EntityType>
+        <EntityType Name="FriendRequests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="RequestedBy" Type="varchar" MaxLength="20" />
+          <Property Name="RequestedTo" Type="varchar" MaxLength="20" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="GroupChat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chatId" Type="int" />
+          <Property Name="groupId" Type="int" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Admin" Type="varchar" MaxLength="200" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="profile" Type="varchar(max)" />
+          <Property Name="isOfficial" Type="bit" />
+          <Property Name="date" Type="varchar" MaxLength="100" />
+          <Property Name="memberCount" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="JoinedSociety">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userId" Type="varchar" MaxLength="200" />
+          <Property Name="societyId" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isMentor" Type="bit" />
+        </EntityType>
+        <EntityType Name="notifications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="body" Type="varchar" MaxLength="100" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+          <Property Name="NotificationTo" Type="varchar(max)" />
+          <Property Name="status" Type="int" />
+          <Property Name="dateTime" Type="varchar" MaxLength="50" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="post_id" Type="int" />
+          <Property Name="fromWall" Type="int" />
+          <Property Name="ifOfficial" Type="bit" />
+          <Property Name="notificationFrom" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postedBy" Type="varchar" MaxLength="20" />
+          <Property Name="dateTime" Type="varchar" MaxLength="100" />
+          <Property Name="text" Type="varchar(max)" />
+          <Property Name="type" Type="varchar" MaxLength="20" />
+          <Property Name="postFor" Type="varchar(max)" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="likesCount" Type="int" />
+          <Property Name="CommentsCount" Type="int" />
+          <Property Name="user" Type="varchar(max)" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="fromWall" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reacts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="varchar" MaxLength="20" />
+          <Property Name="postId" Type="int" />
+          <Property Name="emogie" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SharedPosts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="postId" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sharedBy" Type="int" />
+          <Property Name="sharedTo" Type="int" />
+        </EntityType>
+        <EntityType Name="Societies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="profileImage" Type="varchar" MaxLength="200" />
+          <Property Name="storiesCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="societyId" Type="int" />
+          <Property Name="url" Type="varchar" MaxLength="100" />
+          <Property Name="text" Type="varchar(max)" />
+          <Property Name="color" Type="int" />
+          <Property Name="time" Type="varchar" MaxLength="200" />
+          <Property Name="storyFor" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="aridNo" />
+          </Key>
+          <Property Name="aridNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cnic" Type="varchar" MaxLength="20" />
+          <Property Name="section" Type="varchar" MaxLength="15" />
+          <Property Name="sonOf" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="cnic" />
+          </Key>
+          <Property Name="isTeachingTo" Type="varchar(max)" />
+          <Property Name="cnic" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Timetable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slot" Type="varchar" MaxLength="100" />
+          <Property Name="monday" Type="varchar" MaxLength="100" />
+          <Property Name="tuesday" Type="varchar" MaxLength="100" />
+          <Property Name="wednesday" Type="varchar" MaxLength="100" />
+          <Property Name="thursday" Type="varchar" MaxLength="100" />
+          <Property Name="friday" Type="varchar" MaxLength="100" />
+          <Property Name="teacherName" Type="varchar" MaxLength="100" />
+          <Property Name="courseName" Type="varchar" MaxLength="100" />
+          <Property Name="section" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupId" Type="int" />
+          <Property Name="userId" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="CNIC" />
+          </Key>
+          <Property Name="CNIC" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="70" />
+          <Property Name="profileImage" Type="varchar(max)" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="userType" Type="varchar" MaxLength="20" />
+          <Property Name="token" Type="varchar(max)" />
+          <Property Name="lastLogged" Type="varchar(max)" />
+          <Property Name="TAOf" Type="varchar" MaxLength="100" />
+          <Property Name="CrOf" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="BIITSOCIOModelStoreContainer">
+          <EntitySet Name="Allocation" EntityType="Self.Allocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chats" EntityType="Self.chats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="commentsOn" EntityType="Self.commentsOn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="crsEnrp" EntityType="Self.crsEnrp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DateeSheet" EntityType="Self.DateeSheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diary" EntityType="Self.Diary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FriendRequests" EntityType="Self.FriendRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupChat" EntityType="Self.GroupChat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JoinedSociety" EntityType="Self.JoinedSociety" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="notifications" EntityType="Self.notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reacts" EntityType="Self.Reacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SharedPosts" EntityType="Self.SharedPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Societies" EntityType="Self.Societies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Story" EntityType="Self.Story" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timetable" EntityType="Self.Timetable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BIITSOCIOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Allocation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="course_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="semester_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Discipline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="semC" Type="Int32" />
+          <Property Name="SOS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="chat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="chat_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="chatTo" Type="Int32" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="commentsOn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="postId" Type="Int32" />
+          <Property Name="dateTime" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="repliedOn" Type="Int32" />
+          <Property Name="likeCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="course_no" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="course_desc" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="crsEnrp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REG_NO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DISCIPLINE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="course_no" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="emp_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="semester_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Attempt_no" Type="Int32" />
+          <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DateeSheet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="examType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="venue" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="section" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="paper" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="day" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Diary">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="post_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="startDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="colorId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FriendRequest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="RequestedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RequestedTo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GroupChat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chatId" Type="Int32" />
+          <Property Name="groupId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Admin" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isOfficial" Type="Boolean" />
+          <Property Name="date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="memberCount" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JoinedSociety">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="userId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="societyId" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isMentor" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="body" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NotificationTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="dateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="post_id" Type="Int32" />
+          <Property Name="fromWall" Type="Int32" />
+          <Property Name="ifOfficial" Type="Boolean" />
+          <Property Name="notificationFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dateTime" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="postFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="likesCount" Type="Int32" />
+          <Property Name="CommentsCount" Type="Int32" />
+          <Property Name="user" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fromWall" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="React">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="postId" Type="Int32" />
+          <Property Name="emogie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SharedPost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="postId" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sharedBy" Type="Int32" />
+          <Property Name="sharedTo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Society">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="profileImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="storiesCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="societyId" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="Int32" />
+          <Property Name="time" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="storyFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="aridNo" />
+          </Key>
+          <Property Name="aridNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cnic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="section" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="sonOf" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="cnic" />
+          </Key>
+          <Property Name="isTeachingTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cnic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Timetable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slot" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="monday" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tuesday" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="wednesday" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="thursday" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="friday" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="teacherName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="courseName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="section" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupId" Type="Int32" />
+          <Property Name="userId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="CNIC" />
+          </Key>
+          <Property Name="CNIC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="profileImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="userType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lastLogged" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TAOf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CrOf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="BIITSOCIOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Allocations" EntityType="Self.Allocation" />
+          <EntitySet Name="chats" EntityType="Self.chat" />
+          <EntitySet Name="commentsOns" EntityType="Self.commentsOn" />
+          <EntitySet Name="courses" EntityType="Self.course" />
+          <EntitySet Name="crsEnrps" EntityType="Self.crsEnrp" />
+          <EntitySet Name="DateeSheets" EntityType="Self.DateeSheet" />
+          <EntitySet Name="Diaries" EntityType="Self.Diary" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="FriendRequests" EntityType="Self.FriendRequest" />
+          <EntitySet Name="GroupChats" EntityType="Self.GroupChat" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="JoinedSocieties" EntityType="Self.JoinedSociety" />
+          <EntitySet Name="notifications" EntityType="Self.notification" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Reacts" EntityType="Self.React" />
+          <EntitySet Name="SharedPosts" EntityType="Self.SharedPost" />
+          <EntitySet Name="Societies" EntityType="Self.Society" />
+          <EntitySet Name="Stories" EntityType="Self.Story" />
+          <EntitySet Name="students" EntityType="Self.student" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="Timetables" EntityType="Self.Timetable" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BIITSOCIOModelStoreContainer" CdmEntityContainer="BIITSOCIOEntities">
+          <EntitySetMapping Name="Allocations">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Allocation">
+              <MappingFragment StoreEntitySet="Allocation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="emp_no" ColumnName="emp_no" />
+                <ScalarProperty Name="course_no" ColumnName="course_no" />
+                <ScalarProperty Name="semester_no" ColumnName="semester_no" />
+                <ScalarProperty Name="section" ColumnName="section" />
+                <ScalarProperty Name="Discipline" ColumnName="Discipline" />
+                <ScalarProperty Name="semC" ColumnName="semC" />
+                <ScalarProperty Name="SOS" ColumnName="SOS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chats">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.chat">
+              <MappingFragment StoreEntitySet="chats">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="chat_id" ColumnName="chat_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="chatTo" ColumnName="chatTo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="commentsOns">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.commentsOn">
+              <MappingFragment StoreEntitySet="commentsOn">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="repliedOn" ColumnName="repliedOn" />
+                <ScalarProperty Name="likeCount" ColumnName="likeCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.course">
+              <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="course_no" ColumnName="course_no" />
+                <ScalarProperty Name="course_desc" ColumnName="course_desc" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="crsEnrps">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.crsEnrp">
+              <MappingFragment StoreEntitySet="crsEnrp">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="REG_NO" ColumnName="REG_NO" />
+                <ScalarProperty Name="DISCIPLINE" ColumnName="DISCIPLINE" />
+                <ScalarProperty Name="course_no" ColumnName="course_no" />
+                <ScalarProperty Name="emp_no" ColumnName="emp_no" />
+                <ScalarProperty Name="semester_no" ColumnName="semester_no" />
+                <ScalarProperty Name="Attempt_no" ColumnName="Attempt_no" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DateeSheets">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.DateeSheet">
+              <MappingFragment StoreEntitySet="DateeSheet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="examType" ColumnName="examType" />
+                <ScalarProperty Name="venue" ColumnName="venue" />
+                <ScalarProperty Name="section" ColumnName="section" />
+                <ScalarProperty Name="paper" ColumnName="paper" />
+                <ScalarProperty Name="day" ColumnName="day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diaries">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Diary">
+              <MappingFragment StoreEntitySet="Diary">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="colorId" ColumnName="colorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FriendRequests">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.FriendRequest">
+              <MappingFragment StoreEntitySet="FriendRequests">
+                <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+                <ScalarProperty Name="RequestedTo" ColumnName="RequestedTo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupChats">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.GroupChat">
+              <MappingFragment StoreEntitySet="GroupChat">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="chatId" ColumnName="chatId" />
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="profile" ColumnName="profile" />
+                <ScalarProperty Name="isOfficial" ColumnName="isOfficial" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="memberCount" ColumnName="memberCount" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JoinedSocieties">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.JoinedSociety">
+              <MappingFragment StoreEntitySet="JoinedSociety">
+                <ScalarProperty Name="isMentor" ColumnName="isMentor" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="societyId" ColumnName="societyId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.notification">
+              <MappingFragment StoreEntitySet="notifications">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="body" ColumnName="body" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="NotificationTo" ColumnName="NotificationTo" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="fromWall" ColumnName="fromWall" />
+                <ScalarProperty Name="ifOfficial" ColumnName="ifOfficial" />
+                <ScalarProperty Name="notificationFrom" ColumnName="notificationFrom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="postedBy" ColumnName="postedBy" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="postFor" ColumnName="postFor" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="likesCount" ColumnName="likesCount" />
+                <ScalarProperty Name="CommentsCount" ColumnName="CommentsCount" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="fromWall" ColumnName="fromWall" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reacts">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.React">
+              <MappingFragment StoreEntitySet="Reacts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="emogie" ColumnName="emogie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SharedPosts">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.SharedPost">
+              <MappingFragment StoreEntitySet="SharedPosts">
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sharedBy" ColumnName="sharedBy" />
+                <ScalarProperty Name="sharedTo" ColumnName="sharedTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Societies">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Society">
+              <MappingFragment StoreEntitySet="Societies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="profileImage" ColumnName="profileImage" />
+                <ScalarProperty Name="storiesCount" ColumnName="storiesCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stories">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Story">
+              <MappingFragment StoreEntitySet="Story">
+                <ScalarProperty Name="storyFor" ColumnName="storyFor" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="societyId" ColumnName="societyId" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="aridNo" ColumnName="aridNo" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="section" ColumnName="section" />
+                <ScalarProperty Name="sonOf" ColumnName="sonOf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="isTeachingTo" ColumnName="isTeachingTo" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timetables">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.Timetable">
+              <MappingFragment StoreEntitySet="Timetable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="slot" ColumnName="slot" />
+                <ScalarProperty Name="monday" ColumnName="monday" />
+                <ScalarProperty Name="tuesday" ColumnName="tuesday" />
+                <ScalarProperty Name="wednesday" ColumnName="wednesday" />
+                <ScalarProperty Name="thursday" ColumnName="thursday" />
+                <ScalarProperty Name="friday" ColumnName="friday" />
+                <ScalarProperty Name="teacherName" ColumnName="teacherName" />
+                <ScalarProperty Name="courseName" ColumnName="courseName" />
+                <ScalarProperty Name="section" ColumnName="section" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroups">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CrOf" ColumnName="CrOf" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="profileImage" ColumnName="profileImage" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="lastLogged" ColumnName="lastLogged" />
+                <ScalarProperty Name="TAOf" ColumnName="TAOf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
