@@ -136,6 +136,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="isMentor" Type="bit" />
         </EntityType>
+        <EntityType Name="MutedGroups">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="varchar" MaxLength="200" />
+          <Property Name="groupId" Type="int" />
+        </EntityType>
         <EntityType Name="notifications">
           <Key>
             <PropertyRef Name="id" />
@@ -255,6 +263,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="groupId" Type="int" />
           <Property Name="userId" Type="varchar" MaxLength="20" />
+          <Property Name="isMuted" Type="bit" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -285,6 +294,7 @@
           <EntitySet Name="GroupChat" EntityType="Self.GroupChat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JoinedSociety" EntityType="Self.JoinedSociety" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MutedGroups" EntityType="Self.MutedGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="notifications" EntityType="Self.notifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -552,6 +562,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="groupId" Type="Int32" />
           <Property Name="userId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="isMuted" Type="Boolean" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -594,7 +605,16 @@
           <EntitySet Name="Timetables" EntityType="Self.Timetable" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="MutedGroups" EntityType="BIITSOCIOModel.MutedGroup" />
         </EntityContainer>
+        <EntityType Name="MutedGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="groupId" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -737,10 +757,10 @@
           <EntitySetMapping Name="JoinedSocieties">
             <EntityTypeMapping TypeName="BIITSOCIOModel.JoinedSociety">
               <MappingFragment StoreEntitySet="JoinedSociety">
-                <ScalarProperty Name="isMentor" ColumnName="isMentor" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="societyId" ColumnName="societyId" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="isMentor" ColumnName="isMentor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -821,7 +841,6 @@
           <EntitySetMapping Name="Stories">
             <EntityTypeMapping TypeName="BIITSOCIOModel.Story">
               <MappingFragment StoreEntitySet="Story">
-                <ScalarProperty Name="storyFor" ColumnName="storyFor" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="societyId" ColumnName="societyId" />
@@ -829,6 +848,7 @@
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="color" ColumnName="color" />
                 <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="storyFor" ColumnName="storyFor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -872,13 +892,13 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="groupId" ColumnName="groupId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="isMuted" ColumnName="isMuted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BIITSOCIOModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="CrOf" ColumnName="CrOf" />
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -889,6 +909,16 @@
                 <ScalarProperty Name="token" ColumnName="token" />
                 <ScalarProperty Name="lastLogged" ColumnName="lastLogged" />
                 <ScalarProperty Name="TAOf" ColumnName="TAOf" />
+                <ScalarProperty Name="CrOf" ColumnName="CrOf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MutedGroups">
+            <EntityTypeMapping TypeName="BIITSOCIOModel.MutedGroup">
+              <MappingFragment StoreEntitySet="MutedGroups">
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

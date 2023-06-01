@@ -19,6 +19,8 @@ namespace BiitSocioApis.Controllers
     public class GroupsController : ApiController
     {
         BIITSOCIOEntities db = new BIITSOCIOEntities();
+
+        
         [HttpPost]
         public HttpResponseMessage addGroup()
         {
@@ -82,6 +84,7 @@ namespace BiitSocioApis.Controllers
         public HttpResponseMessage getGroups(String cnic,string userType) {
             try
             {
+                BIITSOCIOEntities db = new BIITSOCIOEntities();
 
                 List<Group> groups = new List<Group>();
                 User user = db.Users.Where(s=>s.CNIC==cnic).FirstOrDefault();
@@ -106,10 +109,25 @@ namespace BiitSocioApis.Controllers
                 groups.AddRange(result);
                 result = (from g in db.Groups join gu in db.UserGroups on g.id equals gu.groupId where gu.userId == cnic select g).ToList();
                 groups.AddRange(result);
-                var results=groups.Distinct();
+                var results=groups.Distinct().ToList();
+                List<object> grops = new List<object>();
+                foreach (var item in results)
+                {
+                    grops.Add(new  { 
+                        Admin = item.Admin,
+                        date = item.date,
+                        description=item.description,
+                        id=item.id,
+                        isOfficial=item.isOfficial,
+                        memberCount = item.memberCount ,
+                        name = item.name,
+                        profile = item.profile,
+                        isMuted=db.MutedGroups.Any(s=>s.userId==user.CNIC &&s.groupId==item.id)
+                    });
+                }
 
                 
-                    return Request.CreateResponse(HttpStatusCode.OK, results);
+                return Request.CreateResponse(HttpStatusCode.OK, grops);
             
             }
             catch (Exception ex)
@@ -177,6 +195,9 @@ namespace BiitSocioApis.Controllers
 
 
         }*/
+       
+      
+
         [HttpGet]
         public HttpResponseMessage getChatOfGroup(int id,string loggedInUserId)
         {

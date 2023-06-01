@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b36e46aa79084c58b2d6c63d46f89738" Name="Diagram1">
+      <Diagram DiagramId="50b33083317a4331ae499dd5f68fc40e" Name="Diagram1">
         <EntityTypeShape EntityType="BIITSOCIOModel.Allocation" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BIITSOCIOModel.chat" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BIITSOCIOModel.commentsOn" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -29,6 +29,7 @@
         <EntityTypeShape EntityType="BIITSOCIOModel.Timetable" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BIITSOCIOModel.UserGroup" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BIITSOCIOModel.User" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BIITSOCIOModel.MutedGroup" Width="1.5" PointX="7.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

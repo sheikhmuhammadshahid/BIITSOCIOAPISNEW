@@ -25,7 +25,6 @@ namespace BiitSocioApis.Models
         public string lastLogged { get; set; }
         public string TAOf { get; set; }
         public string CrOf { get; set; }
-
         public string aridNo { get; set; }
         public string sonOf { get; set; }
         public string section { get; set; }

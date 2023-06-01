@@ -12,11 +12,10 @@ namespace BiitSocioApis.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserGroup
+    public partial class MutedGroup
     {
         public int id { get; set; }
-        public Nullable<int> groupId { get; set; }
         public string userId { get; set; }
-        public Nullable<bool> isMuted { get; set; }
+        public Nullable<int> groupId { get; set; }
     }
 }

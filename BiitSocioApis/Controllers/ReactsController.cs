@@ -56,7 +56,7 @@ namespace BiitSocioApis.Controllers
 
             try
             {
-                List<React> reacts = db.Reacts.Where(s => s.postId == post_id).ToList();
+                List<User> reacts = db.Reacts.AsEnumerable().Where(s => s.postId == post_id).ToList().AsEnumerable().Join(db.Users.AsEnumerable(), re => re.userid, us => us.CNIC, (re, us) =>us).ToList();
 
                 return Request.CreateResponse(HttpStatusCode.OK, reacts);
             }

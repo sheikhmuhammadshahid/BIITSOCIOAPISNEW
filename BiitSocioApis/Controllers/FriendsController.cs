@@ -12,6 +12,59 @@ namespace BiitSocioApis.Controllers
     public class FriendsController : ApiController
     {
         BIITSOCIOEntities db = new BIITSOCIOEntities();
+        [HttpGet]
+        public HttpResponseMessage muteOrUnmuteGroup(int groupId, string userId, bool todo)
+        {
+            try
+            {
+                BIITSOCIOEntities db = new BIITSOCIOEntities();
+                if (todo)
+                {
+                    var ug = db.MutedGroups.Where(s => s.groupId == groupId && s.userId == userId).FirstOrDefault();
+                    if (ug != null)
+                    {
+                        db.MutedGroups.Remove(ug);
+                        db.SaveChanges();
+                    }
+                    return Request.CreateResponse(HttpStatusCode.OK, "Group Un-muted!");
+                }
+                else
+                {
+
+                    db.MutedGroups.Add(new MutedGroup { groupId = groupId, userId = userId });
+                    db.SaveChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, "Group muted!");
+                }
+            }
+            catch (Exception ex)
+            {
+                return new PostController().getExceptionMessage();
+
+            }
+        }
+        [HttpGet]
+        public HttpResponseMessage leaveGroup(int groupId, string userId)
+        {
+            try
+            {
+                BIITSOCIOEntities db = new BIITSOCIOEntities();
+                var ug = db.UserGroups.Where(s => s.groupId == groupId && s.userId == userId).FirstOrDefault();
+                if (ug != null)
+                {
+                    db.UserGroups.Remove(ug);
+                    db.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, "Group left!");
+            }
+            catch (Exception ex)
+            {
+                return new PostController().getExceptionMessage();
+
+            }
+        }
+
+
         [HttpPost]
         public HttpResponseMessage sendFriendRequest(FriendRequest friend)
         {

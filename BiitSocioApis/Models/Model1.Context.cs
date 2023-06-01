@@ -49,5 +49,6 @@ namespace BiitSocioApis.Models
         public virtual DbSet<Timetable> Timetables { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<MutedGroup> MutedGroups { get; set; }
     }
 }

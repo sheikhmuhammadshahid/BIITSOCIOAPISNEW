@@ -83,6 +83,7 @@ namespace BiitSocioApis.Controllers
                 {
                     posts.AddRange(db.Posts.Where(p => p.id > lastSavedPostId&& p.postFor.ToLower().Contains(user.section.ToLower())).Distinct().ToList());
                 }
+                posts.AddRange(db.Posts.Where(p=>p.postedBy==userCnic).ToList());
                 posts = posts.Distinct().ToList();
                 var posts1 = getDetail(posts, userCnic);
                 return Request.CreateResponse(HttpStatusCode.OK,posts1);
